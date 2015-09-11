@@ -1,0 +1,96 @@
+JSTP    : 1.0.0
+Name    : DeviceInfo
+Version : 1.0.0
+BasePath: info
+
+Title   : Device info
+Desc    : Device description interface
+
+Paths   :
+#------------------------------------------------------------------------#
+#                             Identification                             #
+#------------------------------------------------------------------------#
+  company:
+    Title   : Company name
+    Desc    : |
+      Return company name. 
+      For example "Yagle ltd."
+    Result  : String
+
+  name:
+    Title   : Model name
+    Desc    : |
+      Return model name for identification.
+      For example "M3"
+    Result  : String
+
+  sn:
+    Title   : Serial number
+    Desc    : |
+      Return serial number
+      For example "1512345"
+    Result  : SerialNumber
+
+  date:
+    Title   : Production date
+    Desc    : |
+      Return device production date.
+      For example "2015-09-08"
+    Result  : DateTime
+    
+#------------------------------------------------------------------------#
+#                                 Versions                               #
+#------------------------------------------------------------------------#
+  sv:
+    Title   : Firmware version
+    Desc    : Return firmware version
+    Result  : Version
+
+  hv:
+    Title   : Hardware version
+    Desc    : Return hardvare version of device
+    Result  : Version
+
+  
+#------------------------------------------------------------------------#
+#                              Displaying                                #
+#------------------------------------------------------------------------#
+  title:
+    Title   : Device title
+    Desc    : |
+      Return user friendly device title for displaying.
+      For example "Power meter M3-100"
+    Result  : String
+
+  desc:
+    Title   : Description
+    Desc    : Return device description
+    Result  : String
+
+
+
+Types:
+
+  DateTime:
+    Type : String
+    Title: ISO 8601 date
+    Desc : |
+        Date format. See[ISO 8601](https://goo.gl/fkoOxq)
+
+  Version:
+    Type : String
+    Title: Represent version
+    Desc : |
+        Given a version number MAJOR.MINOR.PATCH, increment the:
+        - MAJOR version when you make incompatible API changes,
+        - MINOR version when you add functionality in a backwards-compatible manner, and
+        - PATCH version when you make backwards-compatible bug fixes.
+        See [Semantic Versioning 2.0.0](http://semver.org/spec/v2.0.0.html)
+
+  SerialNumber:
+    Type : String
+    Title: Serial number
+    Desc : |
+        String format YYXXXX, where:
+         - **YY** - two digits - production year
+         - **XXXX** - item number

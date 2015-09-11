@@ -1,0 +1,318 @@
+
+JSTP    : 1.0.0
+Name    : Test
+Version : 1.0.0
+
+BasePath: test
+Title   : Test interface
+Desc    : |
+    Test interface contain all available types, methods, errors
+
+#------------------------------------------------------------------------#
+#                                 Paths                                  #
+#------------------------------------------------------------------------#
+
+Paths:
+    int:
+        Title   : u8 -> u8
+        Desc    : u8 -> u8
+        Args    : u8
+        Result  : u8
+    real:
+        Title   : Real -> Real
+        Desc    : Real -> Real
+        Args    : Real
+        Result  : Real
+
+    enum:
+        Title   : enum -> enum
+        Desc    : enum -> enum
+        Args    : enumType
+        Result  : enumType2
+    bool:
+        Title   : bool -> bool
+        Desc    : bool -> bool
+        Args    : Bool
+        Result  : Bool
+    obj:
+        Title   : obj -> obj
+        Desc    : obj -> obj
+        Args    : objType
+        Result  : objType
+    arrBool:
+        Title   : arrBool -> arrBool
+        Desc    : arrBool -> arrBool
+        Args    : boolArr
+        Result  : boolArr
+    intArr:
+        Title   : intArr -> intArr
+        Desc    : intArr -> intArr
+        Args    : intArr
+        Result  : intArr
+    realArr:
+        Title   : realArr -> realArr
+        Desc    : realArr -> realArr
+        Args    : realArr
+        Result  : realArr
+    strArr:
+        Title   : strArr -> strArr
+        Desc    : strArr -> strArr
+        Args    : strArr
+        Result  : strArr
+    enumArr:
+        Title   : enumArr -> enumArr
+        Desc    : enumArr -> enumArr
+        Args    : enumArr
+        Result  : enumArr
+    objArr:
+        Title   : objArr -> objArr
+        Desc    : objArr -> objArr
+        Args    : objArr
+        Result  : objArr
+    arrArr:
+        Title   : arrArr -> arrArr
+        Desc    : arrArr -> arrArr
+        Args    : arrArr
+        Result  : arrArr
+ 
+Types: 
+#------------------------------------------------------------------------#
+#                                 Enums                                  #
+#------------------------------------------------------------------------#
+
+    enumType:
+        Type : Enum
+        Title: enumType
+        Desc : "enum type with items"
+        Items:
+            item1:
+                Title: item11
+            item2:
+                Title: item12
+            item3:
+                Title: item13
+
+    enumType2:
+        Type : Enum
+        Title: enumType2
+        Desc : "enum type with items"
+        Items:
+            item1:
+                Title: item21
+            item2:
+                Title: item22
+            item3:
+                Title: item23
+
+    objType:
+        Title   : Object type
+        Type    : Object
+        Properties:
+            p_bool:
+                Type : bool
+                Title: Bool prop
+            p_int:
+                Type : u8
+                Title: Integer prop
+            p_real:
+                Type : Real
+                Title: Real prop
+            p_str:
+                Type : Version
+                Title: String prop
+            p_enum:
+                Type : enumType
+                Title: Real prop
+            p_arr:
+                Type : intArr
+                Title: arr prop  
+            p_obj:
+                Type : InterfaceID
+                Title: obj prop     
+
+
+    boolArr:
+        Title   : boolArr
+        Type    : Array
+        Item    : bool
+    intArr:
+        Title: intArr
+        Type    : Array
+        Item    : s8
+    realArr:
+        Title   : realArr
+        Type    : Array
+        Item    : Real
+    strArr:
+        Title   : strArr
+        Type    : Array
+        Item    : Version
+    enumArr:
+        Title   : enumArr
+        Type    : Array
+        Item    : enumType
+    objArr:
+        Title   : objArr
+        Type    : Array
+        Item    : InterfaceID
+    arrArr:
+        Title   : arrArr
+        Type    : Array
+        Item    : intArr
+
+
+
+
+#------------------------------------------------------------------------#
+#                                 Integers                               #
+#------------------------------------------------------------------------#
+    s8:
+        Type : Integer
+        Min  : -127
+        Max  : 127
+        Title: signed char
+        Desc : "signed char: -127...127"
+  
+    u8:
+        Type : Integer
+        Max  : 255
+        Min  : 0
+        Title: unsigned char
+        Desc : "unsigned char: 0...255 (= 28−1)"
+  
+    s16:
+        Type : Integer
+        Min  : -32767
+        Max  : 32767
+        Title: signed short
+        Desc : "signed short: -32767...32767"
+  
+    u16:
+        Type : Integer
+        Min  : 0
+        Max  : 65535
+        Title: unsigned short
+        Desc : "unsigned short: 0...65535 (= 216−1)"
+  
+    s32:
+        Type : Integer
+        Min  : -2147483647
+        Max  : 2147483647
+        Title: signed long
+        Desc : "signed long: -2147483647...2147483647"
+  
+    u32:
+        Type : Integer
+        Min  : 0
+        Max  : 4294967295
+        Title: unsigned long
+        Desc : "unsigned long: 0...4294967295 (= 232−1)"
+  
+    s64:
+        Type : Integer
+        Min  : -9223372036854775807
+        Max  : 9223372036854775807
+        Title: signed long long
+        Desc : "signed long long: -9223372036854775807...9223372036854775807"
+  
+    u64:
+        Type : Integer
+        Min  : 0
+        Max  : 18446744073709551615
+        Title: unsigned long long
+        Desc : "unsigned long long: 0...18446744073709551615 (= 264−1)"
+
+#------------------------------------------------------------------------#
+#                                 Real                                   #
+#------------------------------------------------------------------------#
+
+
+#------------------------------------------------------------------------#
+#                               Special strings                          #
+#------------------------------------------------------------------------#
+
+    SingleWordName:
+        Type : String
+        Title: Name type
+        Regex: "^[a-zA-Z][a-zA-Z0-9_]*"
+        MaxLength: 256
+    
+    DateTime:
+        Type : String
+        Title: ISO 8601 date
+        Desc : |
+            Date format. See[ISO 8601](https://goo.gl/fkoOxq)
+    
+    Version:
+        Type : String
+        Title: Represent version
+        Desc : |
+            Given a version number MAJOR.MINOR.PATCH, increment the:
+            - MAJOR version when you make incompatible API changes,
+            - MINOR version when you add functionality in a backwards-compatible manner, and
+            - PATCH version when you make backwards-compatible bug fixes.
+            See [Semantic Versioning 2.0.0](http://semver.org/spec/v2.0.0.html)
+
+#------------------------------------------------------------------------#
+#                               Special struct                           #
+#------------------------------------------------------------------------#
+
+    InterfaceID:
+        Type : Object
+        Title: Interface unambiguous definition
+        Properties:
+            Name:
+                Type : SingleWordName
+                Title: Interface unique name
+
+            Version:
+                Type : Version
+                Title: Interface version
+Errors  :
+
+#------------------------------------------------------------------------#
+#                            4x   Request Error                          #
+#------------------------------------------------------------------------#
+    40:
+        Title   : "Bad request: not JSON "
+        Desc    : |
+            Cannot process the request due to JSON syntax error
+
+    41:
+        Title   : "Bad request: args error"
+        Desc    : |
+            Cannot process the request due to arguments error
+
+    42:
+        Title   : "Bad request: too large"
+        Desc    : |
+            Cannot process the request due to large message and rx buffer overflow
+
+    44:
+        Title   : Not Found
+        Desc    : |
+            The requested path could not be found.
+
+#------------------------------------------------------------------------#
+#                            5x   Processing Error                       #
+#------------------------------------------------------------------------#
+
+    50:
+        Title   : Internal Error
+        Desc    : |
+            A generic error message, given when an unexpected condition was 
+            encountered and no more specific message is suitable.
+
+    51:
+        Title   : Not implemented
+        Desc    : |
+            Does not recognize the request method, or it lacks the ability to fulfill the request.
+            Usually this implies future availability.
+
+    57:
+        Title   : Insufficient Storage
+        Desc    : |
+            Response too large and internal response buffer overflowed.
+
+    
+
