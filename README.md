@@ -2,8 +2,7 @@
 JSon Text Protocol and C code jenerator for small devices
 
 ## How it work
-You create interface description files in YAML format.
-Choose base path and define routes, arguments types, result types like JSON Schema format.
+You create interface description: define paths, arguments types, result types.
 For example:
 ``` yaml
 JSTP    : 1.0.0
@@ -23,9 +22,7 @@ Types:
         Date format. See[ISO 8601](https://goo.gl/fkoOxq)
 ```
 
-Then choose yaml files and run code-generation tool.
-
-It generate:
+Run generation tool and you have:
 - Small, simple C-code without link to any standard libraries.
 - Single html help file with full interface description
 - Test application for c-generated code
@@ -50,10 +47,10 @@ static int jstp_info_date(char *path_str, char* arg_str, jsmntok_t *arg_tokens, 
     return JSTP_ITEM_NOT_IMPLEMENTED;    // <- REMOVE THIS
 
     // ======= BEGIN RESULT =======
-    jstp_tx_begin();                // <- {"OK":
-    // jstp_tx_str(<str>);       // <- DateTime
-    jstp_tx_end();        // <- }\n
-    return JSTP_NO_ERROR; // <- SUCCESS
+    jstp_tx_begin();                     // <- {"OK":
+    // jstp_tx_str(<str>);               // <- DateTime
+    jstp_tx_end();                       // <- }\n
+    return JSTP_NO_ERROR;                // <- SUCCESS
     // ======= END RESULT =======
 }
 
@@ -93,9 +90,14 @@ Project is maintained under [the Semantic Versioning guidelines](http://semver.o
 ## Changes
 All notable changes to this project will be documented here
 
-### [0.1.0] - 2015/09/11
+### [0.1.0] - 2015/09/15
 
+ - Add C-code generation
+ - Add Html help generation
+ - Add gcc test application
 
 ## Copyright and license
+
+Project include JSON parser library [JSMN](http://zserge.com/jsmn.html)
 
 Code released under the MIT license. Docs is licensed under a [Creative Commons — CC BY 3.0](http://creativecommons.org/licenses/by/3.0/).
