@@ -26,7 +26,7 @@ Types:
 Then choose yaml files and run code-generation tool.
 
 It generate:
-- Small, simple C-code with  without link to any standard libraries.
+- Small, simple C-code without link to any standard libraries.
 - Single html help file with full interface description
 - Test application for c-generated code
 
@@ -83,7 +83,7 @@ Result exmaple (always JSON)
 {"ERR":-5}
 ```
 
-Tested **gcc** and **sdcc** compiler.
+Tested on **gcc** and [sdcc](http://sdcc.sourceforge.net/) compiler.
 
 
 ## Versioning
@@ -94,6 +94,7 @@ Project is maintained under [the Semantic Versioning guidelines](http://semver.o
 All notable changes to this project will be documented here
 
 ### [0.1.0] - 2015/09/11
+
 
 ## Copyright and license
 

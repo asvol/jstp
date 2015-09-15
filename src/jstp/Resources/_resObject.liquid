@@ -1,0 +1,18 @@
+    jstp_tx_obj_key("{{ prop.Name }}");        // <- key
+{% case prop.Type.Type %}
+{% when 'Integer' %}    // jstp_tx_long(<int>);            // <- value
+{% when 'Real' %}    // jstp_tx_float(<float>);         // <- value
+{% when 'Bool' %}    // jstp_tx_bool(<int>);            // <- value
+{% when 'String' %}    // jstp_tx_str(<str>);            // <- value
+{% when 'Object' %}    // Object
+    // Generator not supported more then one nested property
+{% when 'Array' %}    // Array
+    // Generator not supported more then one nested property
+{% when 'Enum' %}{% for enumItem in path.Result.Items -%}
+{% if forloop.first %}    jstp_tx_str("{{ enumItem.Name }}");       // <- {{ enumItem.Title }}
+{% else %}    //jstp_tx_str("{{ enumItem.Name }}");       // <- {{ enumItem.Title }}
+{% endif %}{% endfor -%}
+{% else %}
+    // UNKNOWN TYPE
+{% endcase %}{% unless forloop.last %}    jstp_tx_obj_end_item();            // end prop
+{% endunless %}

@@ -1,0 +1,5 @@
+{% for ifc in model.Interfaces -%}
+{% for path in ifc.Paths -%}
+{{ ifc.BasePath }}.{{ path.Path }}
+{% endfor -%}
+{% endfor -%}

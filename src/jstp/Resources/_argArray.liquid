@@ -1,0 +1,37 @@
+        // {{ path.Args.Name }} is array of {{ path.Args.Item.Name }}
+{% case path.Args.Item.Type %}
+{% when 'Integer' %}
+        long intArg;
+        if (!jstp_rx_long(arg_str,++arg_tokens,&intArg)) return JSTP_ARGS_ERROR;
+{% when 'Real' %}
+        float value;
+        if (!jstp_rx_float(arg_str,++arg_tokens,&value)) return JSTP_ARGS_ERROR;
+{% when 'Bool' %}
+        int boolArg;
+        if (!jstp_rx_bool(arg_str,++arg_tokens,&boolArg)) return JSTP_ARGS_ERROR;
+        if (boolArg)
+        {
+            // true
+        }else
+        {
+            // false
+        };
+{% when 'String' %}            // string
+        char * str;
+        size_t str_len;
+        if (!jstp_rx_str(arg_str,++arg_tokens,&str,&str_len)) return JSTP_ARGS_ERROR;
+        // WARNING!!! now <str> - NOT null-terminated string! It is pointer to char array with <str_len> characters count
+{% when 'Object' %}
+        // Generator not supported ARRAY of OBJECT
+{% when 'Enum' %}
+{% for enumItem in path.Args.Item.Items -%}
+{% if forloop.first %}            if (jstp_rx_cmp_str(arg_str,++arg_tokens,"{{ enumItem.Name }}")) // <- {{ enumItem.Title }}
+{% else %}            else if (jstp_rx_cmp_str(arg_str,arg_tokens,"{{ enumItem.Name }}")) // <- {{ enumItem.Title }}
+{% endif %}            {
+                // {{ enumItem.Title }}
+            }
+{% endfor -%}
+            else return JSTP_ARGS_ERROR; 
+{% else %}
+            // UNKNOWN TYPE
+{% endcase %}
