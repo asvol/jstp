@@ -1,16 +1,14 @@
 # JSTP
-JSon Text Protocol and C code jenerator for small devices
+Simple JSON text protocol with code\help\test generation tool
 
-## How it work
-You create interface description: define paths, arguments types, result types.
-
-Run generation tool and you have:
-- Simple, small C-code without link to any standard libraries.
-- Single html help file with full interface description
-- Test application for C-generated code
-- Example implementation for GCC and SDCC compiler
-
-Example interface description:
+Features:
+ - simple interface description
+ - generate api mock function and help file with api description
+ - no dependencies from any standard libraries
+ - no dynamic memory allocation
+ - use [jsmn](https://bitbucket.org/zserge/jsmn/wiki/Home) as JSON parser
+ 
+Example interface description with one function and one type:
 ``` yaml
 JSTP    : 1.0.0
 Name    : DeviceInfo
@@ -29,7 +27,7 @@ Types:
         Date format. See[ISO 8601](https://goo.gl/fkoOxq)
 ```
 
-Example C-generated mock function:
+Example generated mock function:
 ```c
 /**
  * info.date
@@ -57,18 +55,32 @@ static int jstp_info_date(char *path_str, char* arg_str, jsmntok_t *arg_tokens, 
 }
 
 ```
+API contain 4 function:
+```c
+// init jstp args (call one time)
+void jstp_init();
 
+// put char to rx buffer. Light function, can call from interrupt.
+void jstp_rx_push_char(char c);
+
+// check rx-buffer, execute tasks, write to tx buffer (call as many as possible)
+void jstp_tick();
+
+// get one char from tx buffer. return bool - is tx buffer contain data to read
+int jstp_tx_pop_char(char* c);
+
+```
 You can insert generated C-code to you device, implement read\write char from UART and can control it by serial port from any terminal program
 
 Command example:
-```json
+```
 ifc.on
 ifc.set 1
 ifc.name "test"
 ifc.switch {"freq":154}
 ```
 Same commands in different style
-```json
+```
 /ifc/on
 /ifc/set 1
 /ifc/name "test"

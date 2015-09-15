@@ -51,34 +51,39 @@ typedef enum {
 } jstp_error_t;
 
 /**
- * Common
+ * API
  */
 
 // init jstp args (call one time)
 void jstp_init();
 
-// check buffer and execute tasks (call as many as possible)
-void jstp_tick();
-
-// compare two null-terminal string
-int jstp_str_compare(char *x, const char *y);
-
-// get char from tx buffer. return bool - is tx buffer contain data to read
-int jstp_tx_pop_char(char* c);
-
 // put char to rx buffer. Light function, can call from interrupt.
 void jstp_rx_push_char(char c);
+
+// check rx-buffer, execute tasks, write to tx buffer (call as many as possible)
+void jstp_tick();
+
+// get one char from tx buffer. return bool - is tx buffer contain data to read
+int jstp_tx_pop_char(char* c);
+
+
+
+
 
 
 
 /**
  * Args methods
  */
+// compare two null-terminal string
+int jstp_str_compare(char *x, const char *y);
 
 // check that starts integer value
 int jstp_rx_long(const char *src, jsmntok_t *t, long* out_value);
+
 // check that starts array
 int jstp_rx_array(const char *src, jsmntok_t *t, size_t* out_array_size);
+
 // compare token string and null-terminal string
 int jstp_rx_cmp_str(const char *src, jsmntok_t *t,const char* comapareWith);
 // 
