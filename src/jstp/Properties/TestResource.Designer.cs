@@ -63,6 +63,16 @@ namespace jstp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] ADuC847_h {
+            get {
+                object obj = ResourceManager.GetObject("ADuC847_h", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] gcc_in_txt {
             get {
                 object obj = ResourceManager.GetObject("gcc_in_txt", resourceCulture);
@@ -96,6 +106,26 @@ namespace jstp.Properties {
         internal static byte[] run_sh {
             get {
                 object obj = ResourceManager.GetObject("run_sh", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] sdcc_main_c {
+            get {
+                object obj = ResourceManager.GetObject("sdcc_main_c", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] sdcc_makefile {
+            get {
+                object obj = ResourceManager.GetObject("sdcc_makefile", resourceCulture);
                 return ((byte[])(obj));
             }
         }

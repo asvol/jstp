@@ -3,8 +3,8 @@
  *
  *    Generate info:
  *        Date      : 15.09.2015 11:27
- *        User      : voloshkevich
- *        Domain    : RTS
+ *        User      : 
+ *        Domain    : 
  *  Paths:
  *
  *      ======== Device info ========

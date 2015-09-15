@@ -12,8 +12,8 @@ namespace jstp
         public GenCCommand()
         {
             IsCommand("gen-c", "Generate C code from interface description files.\n" +
-                               "\t\tUse: gen-c <OPTIONS> <ifc1> <ifc1_version> <ifc2> <ifc2_version> ...\n" +
-                               "\t\tFor example command: gen -in=./in -out=./out DeviceInfo 1.0.0 Test 1.0.0\n");
+                               "\t\tUse: <CMD> <OPTIONS> <ifc1> <ifc1_version> <ifc2> <ifc2_version> ...\n" +
+                               "\t\tFor example command: gen-c -in=./in -out=./out DeviceInfo 1.0.0 Test 1.0.0\n");
 
             
         }

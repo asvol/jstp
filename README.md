@@ -3,7 +3,14 @@ JSon Text Protocol and C code jenerator for small devices
 
 ## How it work
 You create interface description: define paths, arguments types, result types.
-For example:
+
+Run generation tool and you have:
+- Simple, small C-code without link to any standard libraries.
+- Single html help file with full interface description
+- Test application for C-generated code
+- Example implementation for GCC and SDCC compiler
+
+Example interface description:
 ``` yaml
 JSTP    : 1.0.0
 Name    : DeviceInfo
@@ -21,11 +28,6 @@ Types:
     Desc : |
         Date format. See[ISO 8601](https://goo.gl/fkoOxq)
 ```
-
-Run generation tool and you have:
-- Small, simple C-code without link to any standard libraries.
-- Single html help file with full interface description
-- Test application for c-generated code
 
 Example C-generated mock function:
 ```c
@@ -77,7 +79,8 @@ Result exmaple (always JSON)
 {"OK":true}
 {"OK":{"Freq":15.5154}}
 {"OK":[123,13,1,231,3]}
-{"ERR":-5}
+{"ERR":51,"MSG":"Not implemented"}
+{"ERR":41,"MSG":"Bad request: args error"}
 ```
 
 Tested on **gcc** and [sdcc](http://sdcc.sourceforge.net/) compiler.
@@ -95,9 +98,10 @@ All notable changes to this project will be documented here
  - Add C-code generation
  - Add Html help generation
  - Add gcc test application
+ - Add sdcc example code for ADuC847
 
 ## Copyright and license
 
-Project include JSON parser library [JSMN](http://zserge.com/jsmn.html)
+Project use JSON parser library [JSMN](http://zserge.com/jsmn.html)
 
 Code released under the MIT license. Docs is licensed under a [Creative Commons — CC BY 3.0](http://creativecommons.org/licenses/by/3.0/).

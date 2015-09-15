@@ -60,6 +60,7 @@
     <Compile Include="Commands\GenCommandBase.cs" />
     <Compile Include="Commands\GenHelpCommand.cs" />
     <Compile Include="Commands\GenTestGccCommand.cs" />
+    <Compile Include="Commands\GenTestSdccCommand.cs" />
     <Compile Include="Properties\HelpResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -104,6 +105,7 @@
     <None Include="App.config" />
     <None Include="NLog.config" />
     <None Include="packages.config" />
+    <None Include="Resources\ADuC847-h" />
     <None Include="Resources\gcc-in-txt" />
     <None Include="Resources\gcc-makefile" />
     <None Include="Resources\help-html.liquid" />
@@ -115,6 +117,8 @@
     <None Include="Resources\jstp_gen-c.liquid" />
     <None Include="Resources\jstp_gen-h.liquid" />
     <None Include="Resources\run-sh" />
+    <None Include="Resources\sdcc-main-c" />
+    <None Include="Resources\sdcc-makefile" />
     <None Include="Resources\_argArray.liquid" />
     <None Include="Resources\_argObject.liquid" />
     <None Include="Resources\_resObject.liquid" />

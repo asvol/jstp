@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ADuC847_h" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ADuC847-h;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="gcc_in_txt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gcc-in-txt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -129,5 +132,11 @@
   </data>
   <data name="run_sh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\run-sh;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="sdcc_main_c" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sdcc-main-c;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="sdcc_makefile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sdcc-makefile;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

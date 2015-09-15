@@ -9,8 +9,8 @@ namespace jstp
         public GenTestGccCommand()
         {
             IsCommand("gen-gcc", "Generate test application\n" +
-                                 "\t\tUse: gen-gcc <OPTIONS> <ifc1> <ifc1_version> <ifc2> <ifc2_version> ...\n" +
-                                 "\t\tFor example command: gen-help -in=./in -out=./out DeviceInfo 1.0.0 Test 1.0.0\n");
+                                 "\t\tUse: <CMD> <OPTIONS> <ifc1> <ifc1_version> <ifc2> <ifc2_version> ...\n" +
+                                 "\t\tFor example command: gen-gcc -in=./in -out=./out DeviceInfo 1.0.0 Test 1.0.0\n");
         }
 
 
