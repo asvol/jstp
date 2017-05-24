@@ -78,6 +78,7 @@ int jstp_tx_pop_char(char* c)
 
 void jstp_tx_begin()
 {
+	jstp_tx_char(0x0A);
     jstp_tx_char('{');
     jstp_tx_str("OK");
     jstp_tx_char(':');
@@ -86,7 +87,8 @@ void jstp_tx_begin()
 void jstp_tx_end()
 {
     jstp_tx_char('}');
-    jstp_tx_char('\n');
+    jstp_tx_char(0x0D);
+	jstp_tx_char(0x0A);
 }
 
 
@@ -157,6 +159,7 @@ void jstp_tx_long(long v)
     if(v == 0)
     {
         jstp_tx_char('0');
+		return;
     }
 
     if(v < 0)
@@ -186,12 +189,18 @@ void jstp_tx_float(float v)
     int digit;
     int i;
 
-    if (v < 0) jstp_tx_char('-');
+    if (v < 0)
+	{
+		jstp_tx_char('-');
+		v=-v;
+	}
     tmp = (unsigned long)v;
     jstp_tx_long(tmp);
 
     v -= (float)tmp;
 
+	if (v==0) return;
+	
     jstp_tx_char('.');
 
     i=0;
@@ -214,6 +223,7 @@ void jstp_tx_error(jstp_error_t err)
     jstp.tx.r_inx = 0;
     jstp.tx.w_inx = 0;
 
+	jstp_tx_char(0x0A);
     jstp_tx_char('{');
     jstp_tx_str("ERR");
     jstp_tx_char(':');
@@ -254,7 +264,8 @@ void jstp_tx_error(jstp_error_t err)
     }
 
     jstp_tx_char('}');
-    jstp_tx_char('\n');
+	jstp_tx_char(0x0D);
+	jstp_tx_char(0x0A);
 }
 
 
@@ -411,16 +422,16 @@ int jstp_rx_bool(char *src, jsmntok_t *t, int * out_bool)
 {
     size_t src_length;
     if (t->type != JSMN_PRIMITIVE) return false;
-    src_length = t->end - t->start;\
+    src_length = t->end - t->start;
     
     if (src_length == 4 && src[t->start] == 't')
     {
-        *out_bool == true;
+        *out_bool = true;
         return true;
     }
     if (src_length == 5 && src[t->start] == 'f')
     {
-        *out_bool == false;
+        *out_bool = false;
         return true;
     }
 
@@ -489,7 +500,7 @@ int jstp_rx_float(const char *src, jsmntok_t *t, float* value)
     int sign;
     char c;
     int digit;
-    float fraction;
+    float fraction = 0;
     int i;
     unsigned int fraction_weight;
 
@@ -540,8 +551,8 @@ int jstp_rx_float(const char *src, jsmntok_t *t, float* value)
         fraction = fraction + (float)digit / (float)fraction_weight;
         fraction_weight *=10;
     }
+	*value += fraction;
     *value *= sign;
-    *value += fraction;
 
     return true;
 }
