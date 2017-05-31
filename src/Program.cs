@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using Console734.Connector;
 using ManyConsole;
 using Mono.Options;
@@ -40,8 +41,13 @@ namespace jstp
             }
         }
 
+
+
         private static void PrintWelcome()
         {
+            var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyInformationalVersionAttribute), false);
+            var version = attributes.Length == 0 ? "" : ((AssemblyInformationalVersionAttribute)attributes[0]).InformationalVersion;
+
             var old = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("       __   _____    ______   ____ ");
@@ -51,7 +57,7 @@ namespace jstp
             Console.WriteLine(@"\____/   /____/    /_/    /_/      ");
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Gray;
-            Console.WriteLine("JSon Text Protocol generator {0}",AppInfo.Version);
+            Console.WriteLine("JSon Text Protocol generator {0}", version);
             Console.WriteLine(AppInfo.CopyrightHolder);
             Console.WriteLine();
             Console.ForegroundColor = old;
