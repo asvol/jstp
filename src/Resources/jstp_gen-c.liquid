@@ -101,7 +101,7 @@ static int jstp_{{ ifc.BasePath }}_{{ path.Path }}(char *path_str, char* arg_str
     // ======= BEGIN RESULT =======
     jstp_tx_begin();                // <- {"OK":
 {% case path.Result.Type %}
-{% when 'Integer' %}    // jstp_tx_int(<long>);        // <- {{ path.Result.Name }}
+{% when 'Integer' %}    // jstp_tx_long(<long>);        // <- {{ path.Result.Name }}
 {% when 'Real' %}
     // jstp_tx_float(<float>);        // <- {{ path.Result.Name }}
 {% when 'Bool' %}
@@ -162,7 +162,17 @@ static int jstp__root_path(char *path_str, char* arg_str, jsmntok_t *arg_tokens,
 static int jstp_{{ ifc.BasePath }}(char *path_str, char* arg_str, jsmntok_t *arg_tokens, size_t args_token_count)
 {
     jstp_tx_begin();
+    jstp_tx_array_begin();
+
     jstp_tx_str("{{ ifc.Name }} {{ ifc.Version }}");
+    jstp_tx_array_end_item();
+
+{% for path in ifc.Paths -%}
+    jstp_tx_str("{{ ifc.BasePath | DownCase  }}.{{ path.Path | DownCase  }}");
+    jstp_tx_array_end_item();
+{% endfor -%}
+
+    jstp_tx_array_end();
     jstp_tx_end();
     return JSTP_NO_ERROR;
 }
