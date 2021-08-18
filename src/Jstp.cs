@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -32,7 +32,7 @@ namespace jstp
                 JstpDescInterface ifc;
                 using (var rdr = new StreamReader(file))
                 {
-                    ifc = new Deserializer(ignoreUnmatched: true).Deserialize<JstpDescInterface>(rdr);
+                    ifc = new Deserializer().Deserialize<JstpDescInterface>(rdr);
                 }
                 ifc.Validate();
                 var key = new InterfaceId(ifc.Name, Version.Parse(ifc.Version));
