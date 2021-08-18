@@ -165,11 +165,11 @@ static int jstp_{{ ifc.BasePath }}(char *path_str, char* arg_str, jsmntok_t *arg
     jstp_tx_array_begin();
 
     jstp_tx_str("{{ ifc.Name }} {{ ifc.Version }}");
-    jstp_tx_array_end_item();
+    
 
 {% for path in ifc.Paths -%}
-    jstp_tx_str("{{ ifc.BasePath | DownCase  }}.{{ path.Path | DownCase  }}");
     jstp_tx_array_end_item();
+    jstp_tx_str("{{ path.Path }}");
 {% endfor -%}
 
     jstp_tx_array_end();
